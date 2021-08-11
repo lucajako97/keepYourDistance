@@ -3,43 +3,24 @@
  *  @author Luca Giacometti		10524482
  */
 
-#include "keepYourDistance.h"
-
 configuration keepYourDistanceAppC {}
 
 implementation {
-
-
-/****** COMPONENTS *****/
-  components MainC, keepYourDistanceC as App;
-  
+  components MainC, keepYourDistanceC as App, LedsC;
   components new AMSenderC(AM_KEEPYOURDISTANCE_MSG);
   components new AMReceiverC(AM_KEEPYOURDISTANCE_MSG);
+  components new TimerMilliC();
   components ActiveMessageC;
+  components PrintfC;
+  components SerialStartC;
   
-  //components new TimerMilliC() as receiver_t;
-  components new TimerMilliC() as sender_t;
-  
-/****** INTERFACES *****/
-  //Boot interface
   App.Boot -> MainC.Boot;
-
-  /****** Wire the other interfaces down here *****/
   
-  //Send and Receive interfaces
-  App.AMSend -> AMSenderC;
   App.Receive -> AMReceiverC;
-  
-  //Radio Control
-  App.SplitControl -> ActiveMessageC;
-  
-  //Interfaces to access package fields
+  App.AMSend -> AMSenderC;
+  App.AMControl -> ActiveMessageC;
+  App.MilliTimer -> TimerMilliC;
+  App.Leds -> LedsC;
   App.Packet -> AMSenderC;
-  App.PAck -> AMSenderC;
-  
-  //Timer interface
-  //App.ReceiverTimer -> receiver_t;
-  App.SenderTimer -> sender_t;
-
 }
 
