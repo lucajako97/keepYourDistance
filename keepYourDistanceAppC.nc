@@ -11,7 +11,7 @@ implementation {
   components new AMReceiverC(AM_KEEPYOURDISTANCE_MSG);
   components new TimerMilliC();
   components ActiveMessageC;
-  components PrintfC;
+  components SerialPrintfC;
   components SerialStartC;
   
   App.Boot -> MainC.Boot;
