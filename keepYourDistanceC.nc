@@ -6,6 +6,8 @@
 #include "keepYourDistance.h"
 #include "printf.h"
 
+#define MAX_MOTES 10
+
 module keepYourDistanceC @safe() {
   uses {
     interface Leds;
@@ -23,8 +25,10 @@ implementation {
 
   bool locked;
 
-  uint16_t last_id = -1;
-  uint16_t counter = 0;
+  uint8_t last_counter[MAX_MOTES];
+  uint8_t start_counter[MAX_MOTES];
+
+  uint8_t internal_counter = 0;
   
   event void Boot.booted() {
     call AMControl.start();
@@ -60,6 +64,9 @@ implementation {
       }
 
       rcm->id = TOS_NODE_ID;
+      rcm->seq_n = internal_counter;
+
+      internal_counter++;
       
       if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(keepyourdistance_msg_t)) == SUCCESS) {
       dbg("KeepYourDistance", "KeepYourDistance: packet sent.\n", counter); 
@@ -75,25 +82,43 @@ implementation {
     if (len != sizeof(keepyourdistance_msg_t)) {return bufPtr;}
     else {
       keepyourdistance_msg_t* rcm = (keepyourdistance_msg_t*)payload;
-      
-      if (last_id == rcm->id){
-        counter++;
-      }
-      else{
-        last_id = rcm->id;
-        counter = 1;
+
+      uint8_t id = rcm->id -1;
+
+      /**printf("[%u] Received from >%u< with counter %u\n", TOS_NODE_ID, rcm->id, rcm->seq_n);
+      printfflush();**/
+
+      // Check if source id is valid
+      if(id > MAX_MOTES-1){
+        return bufPtr;
       }
 
-      printfflush();
-      printf(">> I am %u, I received from %u, counter is %u <<\n", TOS_NODE_ID, rcm->id, counter);
-      printfflush();
-    }
+      // Check if we already got a msg from it, if FALSE, initialize start_counter and last_counter
+      if(start_counter[id] == -1){
+        start_counter[id] = rcm->seq_n;
+        last_counter[id] = rcm->seq_n;
+      }
+      // Otherwise we already got a msg from the mote
+      else {
+        // Check if we received a consecutive counter, if TRUE, increment last_counter
+        if (last_counter[id] == rcm->seq_n -1){
+          last_counter[id]++;
+        }
+        // Otherwise it means we missed a msg, then we reset the start_counter and last_counter
+        else{
+          start_counter[id] = rcm->seq_n;
+          last_counter[id] = rcm->seq_n;
+        }
+      }
 
-    if (counter == 10){
-      printfflush();
-      printf(">> Too close to: %u <<\n", last_id);
-      printfflush();
-      counter = 0;
+      // Now check if this was the 10th consecutive msg, if TRUE, send an alert and reset start_counter
+      if(last_counter[id] - start_counter[id] >= 10){
+        printf("[%u] Too close to >%u<\n", TOS_NODE_ID, rcm->id);
+        printfflush();
+        start_counter[id] = last_counter[id];
+      }
+
+
     }
       
       return bufPtr;

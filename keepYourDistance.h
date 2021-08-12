@@ -10,7 +10,8 @@
 typedef nx_struct keepyourdistance_msg {
 	
 	// the id of the mote which is propagating the message
-	nx_uint16_t id;
+	nx_uint8_t id;
+	nx_uint8_t seq_n;
 	
 } keepyourdistance_msg_t;
 
