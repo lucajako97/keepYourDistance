@@ -1,0 +1,16 @@
+[1] Received message from user 1 on port 60001
+[2] Retrieved the data: the source mote is 1 and the target mote is 4
+[3] Preparing the message for the IFTTT server: event = keep_your_distance, value1 = 1 value2 = 4
+[1] Received message from user 5 on port 60005
+[2] Retrieved the data: the source mote is 5 and the target mote is 4
+[3] Preparing the message for the IFTTT server: event = keep_your_distance, value1 = 5 value2 = 4
+[1] Received message from user 4 on port 60004
+[2] Retrieved the data: the source mote is 4 and the target mote is 1
+[3] Preparing the message for the IFTTT server: event = keep_your_distance, value1 = 4 value2 = 1
+[1] Received message from user 4 on port 60004
+[2] Retrieved the data: the source mote is 4 and the target mote is 5
+[3] Preparing the message for the IFTTT server: event = keep_your_distance, value1 = 4 value2 = 5
+[4] Message from user 1 with target 4 is sent to the IFTTT server!
+[4] Message from user 5 with target 4 is sent to the IFTTT server!
+[4] Message from user 4 with target 1 is sent to the IFTTT server!
+[4] Message from user 4 with target 5 is sent to the IFTTT server!

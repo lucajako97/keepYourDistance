@@ -1,0 +1,48 @@
+00:04.813	ID:2	<2> KeepYourDistance: timer fired, counter is 0.
+00:04.816	ID:2	<2> KeepYourDistance: packet sent.
+00:04.925	ID:4	<4> KeepYourDistance: timer fired, counter is 0.
+00:04.928	ID:4	<4> KeepYourDistance: packet sent.
+00:04.938	ID:1	<1> KeepYourDistance: Received packet of length 2.
+00:04.938	ID:5	<5> KeepYourDistance: Received packet of length 2.
+00:04.940	ID:1	<1> Received from >4< with counter 0
+00:04.940	ID:5	<5> Received from >4< with counter 0
+00:04.959	ID:1	<1> KeepYourDistance: timer fired, counter is 0.
+00:04.962	ID:1	<1> KeepYourDistance: packet sent.
+00:04.969	ID:4	<4> KeepYourDistance: Received packet of length 2.
+00:04.971	ID:4	<4> Received from >1< with counter 0
+00:05.292	ID:5	<5> KeepYourDistance: timer fired, counter is 0.
+00:05.295	ID:5	<5> KeepYourDistance: packet sent.
+00:05.301	ID:2	<2> KeepYourDistance: timer fired, counter is 1.
+00:05.305	ID:2	<2> KeepYourDistance: packet sent.
+00:05.306	ID:4	<4> KeepYourDistance: Received packet of length 2.
+00:05.309	ID:4	<4> Received from >5< with counter 0
+00:05.413	ID:4	<4> KeepYourDistance: timer fired, counter is 1.
+00:05.416	ID:4	<4> KeepYourDistance: packet sent.
+00:05.429	ID:1	<1> KeepYourDistance: Received packet of length 2.
+00:05.429	ID:5	<5> KeepYourDistance: Received packet of length 2.
+00:05.431	ID:5	<5> Received from >4< with counter 1
+00:05.431	ID:1	<1> Received from >4< with counter 1
+00:05.447	ID:1	<1> KeepYourDistance: timer fired, counter is 1.
+00:05.450	ID:1	<1> KeepYourDistance: packet sent.
+00:05.457	ID:4	<4> KeepYourDistance: Received packet of length 2.
+00:05.459	ID:4	<4> Received from >1< with counter 1
+00:05.476	ID:3	<3> KeepYourDistance: timer fired, counter is 0.
+00:05.479	ID:3	<3> KeepYourDistance: packet sent.
+00:05.780	ID:5	<5> KeepYourDistance: timer fired, counter is 1.
+00:05.783	ID:5	<5> KeepYourDistance: packet sent.
+00:05.789	ID:2	<2> KeepYourDistance: timer fired, counter is 2.
+00:05.792	ID:2	<2> KeepYourDistance: packet sent.
+00:05.792	ID:4	<4> KeepYourDistance: Received packet of length 2.
+00:05.794	ID:4	<4> Received from >5< with counter 1
+00:05.902	ID:4	<4> KeepYourDistance: timer fired, counter is 2.
+00:05.904	ID:4	<4> KeepYourDistance: packet sent.
+00:05.912	ID:1	<1> KeepYourDistance: Received packet of length 2.
+00:05.912	ID:5	<5> KeepYourDistance: Received packet of length 2.
+00:05.915	ID:5	<5> Received from >4< with counter 2
+00:05.915	ID:1	<1> Received from >4< with counter 2
+00:05.936	ID:1	<1> KeepYourDistance: timer fired, counter is 2.
+00:05.939	ID:1	<1> KeepYourDistance: packet sent.
+00:05.942	ID:4	<4> KeepYourDistance: Received packet of length 2.
+00:05.944	ID:4	<4> Received from >1< with counter 2
+00:05.964	ID:3	<3> KeepYourDistance: timer fired, counter is 1.
+00:05.967	ID:3	<3> KeepYourDistance: packet sent.

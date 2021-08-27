@@ -50,8 +50,9 @@ implementation {
   
   event void MilliTimer.fired() {
     
-    dbg("KeepYourDistance", "KeepYourDistance: timer fired, counter is %hu.\n", counter);
-    
+    printf("<%u> KeepYourDistance: timer fired, counter is %u.\n", TOS_NODE_ID, internal_counter);
+    printfflush();
+
     if (locked) {
       return;
     }
@@ -69,7 +70,8 @@ implementation {
       internal_counter++;
       
       if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(keepyourdistance_msg_t)) == SUCCESS) {
-      dbg("KeepYourDistance", "KeepYourDistance: packet sent.\n", counter); 
+      printf("<%u> KeepYourDistance: packet sent.\n", TOS_NODE_ID);
+      printfflush();
       locked = TRUE;
       }
     }
@@ -77,7 +79,8 @@ implementation {
 
   event message_t* Receive.receive(message_t* bufPtr, 
            void* payload, uint8_t len) {
-    dbg("KeepYourDistance", "Received packet of length %hhu.\n", len);
+    printf("<%u> KeepYourDistance: Received packet of length %u.\n", TOS_NODE_ID, len);
+    printfflush();
     
     if (len != sizeof(keepyourdistance_msg_t)) {return bufPtr;}
     else {
@@ -85,8 +88,8 @@ implementation {
 
       uint8_t id = rcm->id -1;
 
-      /**printf("[%u] Received from >%u< with counter %u\n", TOS_NODE_ID, rcm->id, rcm->seq_n);
-      printfflush();**/
+      printf("<%u> Received from >%u< with counter %u\n", TOS_NODE_ID, rcm->id, rcm->seq_n);
+      printfflush();
 
       // Check if source id is valid
       if(id > MAX_MOTES-1){
